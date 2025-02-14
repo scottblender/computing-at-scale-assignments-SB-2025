@@ -27,7 +27,7 @@ public:
        {
         for(auto k=1; k<points+1;++k){
             double K = static_cast<double>(k);
-            weights[k-1] = (M_PI/(K+1.0))*std::pow(M_PI*K/(num_points+1.0),2);
+            weights[k-1] = (M_PI/(num_points+1.0))*std::pow(std::sin(M_PI*K/(num_points+1.0)),2);
             nodes[k-1] = std::cos((K*M_PI)/(num_points+1.0));
         };
         setWeightsAndNodes(weights, nodes);

@@ -44,10 +44,8 @@ double polynomial_integrate(int integrator_type, int case_, std::vector<double> 
             std::vector<double> weights = gcheb.getWeights();
             std::vector<double> nodes = gcheb.getNodes();
             double coeff1 = (b-a)/2.0;
-            double coeff2 = (a+b)/2.0;
             for(auto i=0; i < num_points; ++i){
-                double xi = coeff1*nodes[i]+coeff2;
-                result += weights[i]*poly(xi);
+                result += weights[i]*poly(nodes[i]);
             }
             return coeff1*result;
             }
@@ -58,10 +56,8 @@ double polynomial_integrate(int integrator_type, int case_, std::vector<double> 
             std::vector<double> weights = gcheb.getWeights();
             std::vector<double> nodes = gcheb.getNodes();
             double coeff1 = (b-a)/2.0;
-            double coeff2 = (a+b)/2.0;
             for(auto i=0; i < num_points; ++i){
-                double xi = coeff1*nodes[i]+coeff2;
-                result += weights[i]*poly(xi);
+                result += weights[i]*poly(nodes[i]);
             }
             return coeff1*result;
             }
