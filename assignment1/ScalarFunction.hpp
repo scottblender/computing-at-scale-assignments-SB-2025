@@ -7,13 +7,13 @@ Assumptions:
 #ifndef SCALAR_FUNCTION_HPP
 #define SCALAR_FUNCTION_HPP
 
-template<typename T1, typename T2>
+template<typename T>
 class ScalarFunction {
 public:
     virtual ~ScalarFunction() noexcept = default;
 
     // Pure virtual function to be implemented by derived classes
-    virtual T1 operator()(T1 x) const = 0; 
+    virtual T operator()(T x) const = 0; 
 
 };
 

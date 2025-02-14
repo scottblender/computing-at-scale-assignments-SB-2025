@@ -16,7 +16,7 @@ public:
         std::vector<double> nodes = std::vector<double>(points);
        if(case_ == 1)
        {
-        for(int j=1; j<points+1;++j){
+        for(auto j=1; j<points+1;++j){
             double J = static_cast<double>(j);
             weights[j-1] = M_PI/num_points;
             nodes[j-1] = std::cos(M_PI*(2.0*J-1.0)/(2.0*num_points));
@@ -25,7 +25,7 @@ public:
        }
        else if (case_ == 2)
        {
-        for(int k=1; k<points+1;++k){
+        for(auto k=1; k<points+1;++k){
             double K = static_cast<double>(k);
             weights[k-1] = (M_PI/(K+1.0))*std::pow(M_PI*K/(num_points+1.0),2);
             nodes[k-1] = std::cos((K*M_PI)/(num_points+1.0));

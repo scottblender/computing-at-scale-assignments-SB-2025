@@ -13,7 +13,7 @@ public:
     {
         switch (points) {
             case 3:
-                setWeightsAndNodes({1.0/3.0, 2.0/3.0, 1.0/3.0}, {-1.0, 0.0, 1.0});
+                setWeightsAndNodes({1.0/3.0, 4.0/3.0, 1.0/3.0}, {-1.0, 0.0, 1.0});
                 break;
             case 4:
                 setWeightsAndNodes({1.0/6.0, 5.0/6.0, 5.0/6.0, 1.0/6.0}, {-1.0, -std::sqrt(1.0/5.0),std::sqrt(1.0/5.0), 1.0});
