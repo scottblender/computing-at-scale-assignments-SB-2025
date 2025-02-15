@@ -44,8 +44,10 @@ double polynomial_integrate(int integrator_type, int case_, std::vector<double> 
             std::vector<double> weights = gcheb.getWeights();
             std::vector<double> nodes = gcheb.getNodes();
             double coeff1 = (b-a)/2.0;
+            double coeff2 = (a+b)/2.0;
             for(auto i=0; i < num_points; ++i){
-                result += weights[i]*poly(nodes[i]);
+                double xi = coeff1*nodes[i] + coeff2;
+                result += weights[i]*poly(xi);
             }
             return coeff1*result;
             }
@@ -55,11 +57,10 @@ double polynomial_integrate(int integrator_type, int case_, std::vector<double> 
             double result = 0.0;
             std::vector<double> weights = gcheb.getWeights();
             std::vector<double> nodes = gcheb.getNodes();
-            double coeff1 = (b-a)/2.0;
             for(auto i=0; i < num_points; ++i){
                 result += weights[i]*poly(nodes[i]);
             }
-            return coeff1*result;
+            return result;
             }
         else {
             std::cerr << "Invalid case type!" << std::endl;
@@ -71,3 +72,4 @@ double polynomial_integrate(int integrator_type, int case_, std::vector<double> 
         return 0.0; // Return 0.0 or another default/error value for invalid input
     }
 }
+

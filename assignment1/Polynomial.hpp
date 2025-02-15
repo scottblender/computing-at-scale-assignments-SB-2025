@@ -17,8 +17,9 @@ public:
     // Implementing the operator() to evaluate the polynomial at x
     T operator()(T x) const override {
         T result = 0;
-        for (size_t i = 0; i < coefficients.size(); ++i) {
-            result += coefficients[i] * std::pow(x, coefficients.size() - 1 - i);
+        for (auto i = 0; i < coefficients.size(); ++i) {
+            double I = static_cast<double>(i);
+            result += coefficients[i] * std::pow(x, I);
         }
         return result;
     }
