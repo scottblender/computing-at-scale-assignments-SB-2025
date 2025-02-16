@@ -11,17 +11,22 @@ public:
     GaussLegendre(int points) 
         : IntegrationRule<double, double>() // Initialize base class with empty vectors initially
     {
+        // Switch statement to handle different number of points for Gauss-Legendre quadrature
         switch (points) {
             case 1:
+                // For 1 point, set weight and node for central point
                 setWeightsAndNodes({2.0}, {0.0});
                 break;
             case 2:
+                // For 2 points, set weights and nodes for roots of degree 2 polynomial
                 setWeightsAndNodes({1.0, 1.0}, {-std::sqrt(1.0/3.0), std::sqrt(1.0/3.0)});
                 break;
             case 3:
+                // For 3 points, set weights and nodes for roots of degree 3 polynomial
                 setWeightsAndNodes({5.0/9.0, 8.0/9.0, 5.0/9.0}, {-std::sqrt(3.0/5.0), 0.0, std::sqrt(3.0/5.0)});
                 break;
             case 4:
+                // For 4 points, set weights and nodes for roots of degree 4 polynomial
                 setWeightsAndNodes(
                     {(18.0-std::sqrt(30.0))/36.0, (18.0+std::sqrt(30.0))/36.0, 
                      (18.0+std::sqrt(30.0))/36.0, (18.0-std::sqrt(30.0))/36.0},
@@ -32,6 +37,7 @@ public:
                 );
                 break;
             default:
+                // Throw an exception if an unsupported number of points is provided
                 throw std::invalid_argument("Unsupported number of points for Gauss-Legendre quadrature.");
         }
     }

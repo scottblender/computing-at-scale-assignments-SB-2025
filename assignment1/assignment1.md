@@ -12,7 +12,7 @@ I created a `README.md` file with explicit instructions on how to use the code. 
 
 ### (c) How did you handle errors? How did you test your error handling strategy?
 
-I handled errors using standard C++ exceptions, such as `std::invalid_argument` for invalid inputs. The error handling is tested by ensuring that the program throws exceptions in cases like invalid integration bounds or unsupported input for specific methods For this assignment, this includes using non-[-1, 1] bounds for Gauss-Chebyshev or using the incorrect number of points for Gauss-Legendre or Gauss-Lobatto.
+I handled errors using standard C++ exceptions, such as `std::invalid_argument` for invalid inputs. The error handling is tested by ensuring that the program throws exceptions in cases like invalid integration bounds or unsupported input for specific methods For this assignment, this includes using non-[-1, 1] bounds for Gauss-Chebyshev or using the incorrect number of points for Gauss-Legendre or Gauss-Lobatto. Additionally, since a standard Gauss Quadrature can only integrate a polynomial of 2*n-1 order, I added an error to ensure that the polynomial inputted could be exactly integrated.
 
 ---
 
