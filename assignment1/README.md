@@ -30,7 +30,7 @@
 1. **PolynomialIntegrate.cpp**  
    This file performs the integration using the specified method. It takes in the following arguments from the command line:
    - **integrator_type**: 1 for Gauss-Legendre, 2 for Gauss-Lobatto, 3 for Gauss-Chebyshev.
-   - **coeffs**: A vector of coefficients for the polynomial.
+   - **coeffs**: A vector of coefficients for the polynomial. Coefficients are in order of constant, x, x^2, ... 
    - **a, b**: The limits of integration.
    - **num_points**: The number of integration points.
    - **case_**: (Optional, only for Gauss-Chebyshev) Case type (1 or 2).
