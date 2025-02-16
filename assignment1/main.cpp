@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
 #include "GaussChebyshev.hpp"
-#include "PolynomialIntegrate.hpp"
+#include "Integrate.hpp"
 
 int main() {
     std::vector<double> coeffs = {0, 1, 0};  // Corresponds to x
     // Integrate the polynomial 
-    double result = polynomial_integrate(3, 1, coeffs, -1.0, 1.0, 4);
+    double result = integrate(3, coeffs, -1.0, 1.0, 4, 2);
 
     std::cout << "Integral result: " << result << std::endl;
 
@@ -24,7 +24,7 @@ int main() {
     std::cout << "Polynomial value at x = " << x << " is: " << result_at_1 << std::endl;
 
     int num_p = 4;
-    GaussChebyshev gcheb(num_p,1);
+    GaussChebyshev gcheb(num_p,2);
 
     for(auto i=0; i < num_p; ++i){
         std::cout<<"Weight: " << gcheb.getWeights()[i] << std::endl;

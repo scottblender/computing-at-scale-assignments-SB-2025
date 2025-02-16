@@ -9,6 +9,6 @@
 #include "GaussChebyshev.hpp"
 
 // Function declaration for polynomial_integrate
-double polynomial_integrate(int integrator_type, int case_, std::vector<double> coeffs, double a, double b, int num_points);
+double integrate(int integrator_type, std::vector<double> coeffs, double a, double b, int num_points, int case_);
 
 #endif // POLYNOMIAL_INTEGRATOR_HPP
