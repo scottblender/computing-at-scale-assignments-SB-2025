@@ -102,17 +102,17 @@ int main() {
     total_tests += test_gauss_legendre({0, 0, 0, 0, 0, 1}, 1.0/6.0, 0.0, 1.0, 3); // Expected result for x^5 from 0 to 1 is 1/6
     total_tests += test_gauss_lobatto({0, 0, 0, 0, 0, 1}, 1.0/6.0, 0.0, 1.0, 4); // Expected result for x^5 from 0 to 1 is 1/6
     
-    // **6th Order Polynomial Tests (x^6)**
-    total_tests += test_gauss_legendre({0, 0, 0, 0, 0, 0, 1}, 1.0/7.0, 0.0, 1.0, 3); // Expected result for x^6 from 0 to 1 is 1/7
-    total_tests += test_gauss_lobatto({0, 0, 0, 0, 0, 0, 1}, 1.0/7.0, 0.0, 1.0, 4); // Expected result for x^6 from 0 to 1 is 1/7
+    // 6th Order Polynomial Tests (x^6)
+    total_tests += test_gauss_legendre({0, 0, 0, 0, 0, 0, 1}, 1.0/7.0, 0.0, 1.0, 4); // Expected result for x^6 from 0 to 1 is 1/7
+    total_tests += test_gauss_lobatto({0, 0, 0, 0, 0, 0, 1}, 1.0/7.0, 0.0, 1.0, 5); // Expected result for x^6 from 0 to 1 is 1/7
     
-    // **7th Order Polynomial Tests (x^7)**
-    total_tests += test_gauss_legendre({0, 0, 0, 0, 0, 0, 0, 1}, 1.0/8.0, 0.0, 1.0, 3); // Expected result for x^7 from 0 to 1 is 1/8
-    total_tests += test_gauss_lobatto({0, 0, 0, 0, 0, 0, 0, 1}, 1.0/8.0, 0.0, 1.0, 4); // Expected result for x^7 from 0 to 1 is 1/8
+    // 7th Order Polynomial Tests (x^7)
+    total_tests += test_gauss_legendre({0, 0, 0, 0, 0, 0, 0, 1}, 1.0/8.0, 0.0, 1.0, 4); // Expected result for x^7 from 0 to 1 is 1/8
+    total_tests += test_gauss_lobatto({0, 0, 0, 0, 0, 0, 0, 1}, 1.0/8.0, 0.0, 1.0, 5); // Expected result for x^7 from 0 to 1 is 1/8
 
-    // **Polynomial x^7 + 7x^6 + 6x^5 + 5x^4 + 4x^3 + 3x^2 + 2x + 1**
-    total_tests += test_gauss_legendre({1, 2, 3, 4, 5, 6, 7, 1}, 7.125, 0.0, 1.0, 3);  // Expected result: 7.125
-    total_tests += test_gauss_lobatto({1, 2, 3, 4, 5, 6, 7, 1}, 7.125, 0.0, 1.0, 4);  // Expected result: 7.125
+    // Polynomial x^7 + 7x^6 + 6x^5 + 5x^4 + 4x^3 + 3x^2 + 2x + 1
+    total_tests += test_gauss_legendre({1, 2, 3, 4, 5, 6, 7, 1}, 7.125, 0.0, 1.0, 4);  // Expected result: 7.125
+    total_tests += test_gauss_lobatto({1, 2, 3, 4, 5, 6, 7, 1}, 7.125, 0.0, 1.0, 5);  // Expected result: 7.125
     
     // Output the total number of tests that failed
     std::cout << "Total tests failed: " << total_tests << std::endl;
