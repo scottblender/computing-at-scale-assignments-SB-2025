@@ -19,35 +19,26 @@ public:
         std::vector<double> nodes = std::vector<double>(num_points);
 
         // Case 1: Chebyshev Type 1 weights and nodes
-        if(case_ == 1) {
-            for(auto j = 1; j <= num_points; ++j) {
+        for(auto j = 1; j <= num_points; ++j){
+            if(case_ == 1) {
                 // Compute the weights and nodes for Chebyshev Type 1
                 weights[j-1] = M_PI / num_points;
                 nodes[j-1] = std::cos(M_PI * (2.0 * j - 1.0) / (2.0 * num_points));
             }
-            // Reverse the vectors to match the correct order
-            std::reverse(weights.begin(), weights.end());
-            std::reverse(nodes.begin(), nodes.end());
-            // Set the calculated weights and nodes using the base class method
-            setWeightsAndNodes(weights, nodes);
-        }
-        // Case 2: Chebyshev Type 2 weights and nodes
-        else if (case_ == 2) {
-            for(auto k = 1; k <= num_points; ++k) {
-                // Compute the weights and nodes for Chebyshev Type 2
-                weights[k-1] = (M_PI / (num_points + 1.0)) * std::pow(std::sin(M_PI * k / (num_points + 1.0)), 2);
-                nodes[k-1] = std::cos((k * M_PI) / (num_points + 1.0));
+            else if (case_ == 2){
+                 // Compute the weights and nodes for Chebyshev Type 2
+                 weights[j-1] = (M_PI / (num_points + 1.0)) * std::pow(std::sin(M_PI * j / (num_points + 1.0)), 2);
+                 nodes[j-1] = std::cos((j * M_PI) / (num_points + 1.0));
             }
-            // Reverse the vectors to match the correct order
-            std::reverse(weights.begin(), weights.end());
-            std::reverse(nodes.begin(), nodes.end());
-            // Set the calculated weights and nodes using the base class method
-            setWeightsAndNodes(weights, nodes);
+            else {
+                std::cerr << "Invalid case type!" << std::endl;
+            }
         }
-        else {
-            // Handle invalid case type
-            std::cerr << "Invalid case type!" << std::endl;
-        }
+         // Reverse the vectors to match the correct order
+         std::reverse(weights.begin(), weights.end());
+         std::reverse(nodes.begin(), nodes.end());
+         // Set the calculated weights and nodes using the base class method
+         setWeightsAndNodes(weights, nodes);
     }
 };
 
