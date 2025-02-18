@@ -19,42 +19,40 @@ double performIntegration(std::vector<double>& weights, std::vector<double>& nod
 
 // Function to perform numerical integration based on the specified integrator type
 double integrate(int integrator_type, std::vector<double> coeffs, double a, double b, int num_points, int case_ = 1) {
-    // Get the degree of the polynomial from the number of coefficients
-    int poly_degree = coeffs.size() - 1;
-    
-    // Check if the polynomial degree is valid for the selected integration method
-    int max_degree = 2 * num_points - 1; // Maximum degree that can be integrated by Gauss quadrature with num_points
-    if (poly_degree > max_degree) {
-        std::cerr << "Error: Polynomial degree is too high for the selected integration method. "
-                  << "The polynomial degree must be <= " << max_degree << " for " 
-                  << num_points << " points." << std::endl;
-        return 0.0; // Return 0.0 to indicate error
-    }
 
-    // Calculate scaling and centering coefficients for the integration interval
-    double coeff1 = (b - a) / 2.0;
-    double coeff2 = (a + b) / 2.0;
+    // Determine the order of the polynomial from the coefficients
+    int order_of_polynomial = coeffs.size() - 1;
 
     // Gauss-Legendre integration (integrator_type == 1)
     if (integrator_type == 1) {
+        // Check if the polynomial order exceeds the exact integration limit
+        if (order_of_polynomial > 2 * num_points - 1) {
+            throw std::invalid_argument("Polynomial degree exceeds the maximum degree that can be exactly integrated by Gauss-Legendre.");
+        }
+
         GaussLegendre gleg(num_points); // Create GaussLegendre object with specified number of points
         Polynomial<double> poly(coeffs); // Create polynomial object with provided coefficients
         std::vector<double> weights = gleg.getWeights(); // Get weights for Gauss-Legendre
         std::vector<double> nodes = gleg.getNodes(); // Get nodes for Gauss-Legendre
 
         // Call the helper function to perform the integration
-        return performIntegration(weights, nodes, poly, coeff1, coeff2, num_points);
+        return performIntegration(weights, nodes, poly, (b - a) / 2.0, (a + b) / 2.0, num_points);
     }
 
     // Gauss-Lobatto integration (integrator_type == 2)
     else if (integrator_type == 2) {
+        // Check if the polynomial order exceeds the exact integration limit
+        if (order_of_polynomial > 2 * num_points - 3) {
+            throw std::invalid_argument("Polynomial degree exceeds the maximum degree that can be exactly integrated by Gauss-Lobatto.");
+        }
+
         GaussLobatto glob(num_points); // Create GaussLobatto object with specified number of points
         Polynomial<double> poly(coeffs); // Create polynomial object with provided coefficients
         std::vector<double> weights = glob.getWeights(); // Get weights for Gauss-Lobatto
         std::vector<double> nodes = glob.getNodes(); // Get nodes for Gauss-Lobatto
 
         // Call the helper function to perform the integration
-        return performIntegration(weights, nodes, poly, coeff1, coeff2, num_points);
+        return performIntegration(weights, nodes, poly, (b - a) / 2.0, (a + b) / 2.0, num_points);
     }
 
     // Gauss-Chebyshev integration (integrator_type == 3)
@@ -73,7 +71,7 @@ double integrate(int integrator_type, std::vector<double> coeffs, double a, doub
             std::vector<double> nodes = gcheb.getNodes(); // Get nodes for Gauss-Chebyshev
 
             // Call the helper function to perform the integration
-            return performIntegration(weights, nodes, poly, coeff1, coeff2, num_points);
+            return performIntegration(weights, nodes, poly, (b - a) / 2.0, (a + b) / 2.0, num_points);
         }
         else {
             // If the case type is invalid (not 1 or 2)
