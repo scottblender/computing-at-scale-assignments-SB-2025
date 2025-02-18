@@ -69,5 +69,8 @@ over the range [0, 1] using Gauss-Legendre integration.
 To run cmake, make a build directory using the following command:  
 `mkdir build`
 
+After, change into the build directory using the following command:
+`cd build`
+
 Then, run `cmake ..` to build the relevant CMake files. This requires CMake version 3.28.3. Finally, run `make` to develop all the files and access the results of `UnitTests.cpp` by running:  
 `./unit_tests`
