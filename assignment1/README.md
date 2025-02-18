@@ -27,8 +27,8 @@
 
 ### cpp Files
 
-1. **PolynomialIntegrate.cpp**  
-   This file performs the integration using the specified method. It takes in the following arguments from the command line:
+1. **Integrate.cpp**  
+   This file performs the integration using the specified method. It takes in the following arguments:
    - **integrator_type**: 1 for Gauss-Legendre, 2 for Gauss-Lobatto, 3 for Gauss-Chebyshev.
    - **coeffs**: A vector of coefficients for the polynomial. Coefficients are in order of constant, x, x^2, ... 
    - **a, b**: The limits of integration.
@@ -37,8 +37,26 @@
    
    To run the program, input these values into the command line. If not using Gauss-Chebyshev, the **case_** argument is optional.
 
-2. **Integrate.cpp**  
-   This file contains the actual integration logic for all methods of integration, based on the Gauss Quadrature Wikipedia page. The inputs and logic are the same as in `PolynomialIntegrate.cpp`, and it can be called from other files like `UnitTests.cpp` and `PolynomialIntegrate.cpp` via the header file `Integrate.hpp`.
+2. **PolynomialIntegrate.cpp**  
+   This file performs numerical integration based on the specified integration method. It takes in the following arguments:
+   - **integrator_type**: 
+     - `1` for Gauss-Legendre
+     - `2` for Gauss-Lobatto
+     - `3` for Gauss-Chebyshev.
+   - **case_type**: (Only relevant for Gauss-Chebyshev)
+     - `1` or `2` for the two available cases of Gauss-Chebyshev integration.
+   - **num_points**: The number of points to be used for the integration (e.g., 3, 4, etc.).
+   - **a, b**: The lower and upper bounds of the integration.
+   - **coeffs**: A vector of coefficients for the polynomial to be integrated. Coefficients are in order of constant, \(x\), \(x^2\), and so on.
+   
+   To run the program, input these values into the command line. If not using Gauss-Chebyshev, the **case_type** argument is optional.
+
+### Example Usage:
+```bash
+./PolynomialIntegrate 1 1 5 0 1 1 2 3 4 5
+```
+This will compute the integral of the polynomial: \[ 1 + 2x + 3x^2 + 4x^3 + 5x^4 \]
+over the range [0, 1] using Gauss-Legendre integration.
 
 3. **UnitTests.cpp**  
    This file tests all types of integration (Gauss-Legendre, Gauss-Lobatto, and Gauss-Chebyshev) for the functions \(x\) and \(x^2\). It outputs how many tests passed/failed and which tests passed/failed on the command line. The tests are designed to ensure the correctness of the integration methods.
